@@ -6,7 +6,26 @@ function getYear() {
 }
 
 getYear();
+var images = [
+    'images/f2.jpg',
+    'images/f1.png',
+    'images/f3.png',
+    'images/f4.png', // Thêm nhiều ảnh nếu cần
+];
 
+var currentIndex = 0; // Chỉ số ảnh hiện tại
+
+// Hàm để thay đổi ảnh
+function changeImage() {
+    currentIndex++; // Tăng chỉ số ảnh
+    if (currentIndex >= images.length) {
+        currentIndex = 0; // Nếu đã đến ảnh cuối, quay lại ảnh đầu
+    }
+    document.getElementById('myImage').src = images[currentIndex]; // Thay đổi ảnh
+}
+
+// Thay đổi ảnh sau mỗi 2 giây (2000 milliseconds)
+setInterval(changeImage, 3000);
 
 // isotope js
 $(window).on('load', function () {

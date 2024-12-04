@@ -115,6 +115,8 @@ a:focus {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+     overflow: hidden;
+ 
 }
 
 .sub_page .hero_area {
@@ -311,7 +313,7 @@ a:focus {
 
 /*end header section*/
 /* slider section */
-.slider_section {
+slider_section {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -323,6 +325,7 @@ a:focus {
           align-items: center;
   position: relative;
   padding: 45px 0 75px 0;
+  overflow: hidden;
 }
 
 .slider_section .row {
@@ -337,8 +340,13 @@ a:focus {
 }
 
 .slider_section .detail-box {
+  position: absolute; /* Đặt vị trí tuyệt đối cho phần thông tin */
+  top: 50%; /* Đặt ở giữa theo chiều dọc */
+  left: 50%; /* Đặt ở giữa theo chiều ngang */
+  transform: translate(-50%, -50%); /* Giúp căn giữa chính xác */
   color: #ffffff;
   margin-bottom: 145px;
+  transition: opacity 0.5s ease;
 }
 
 .slider_section .detail-box h1 {
@@ -367,7 +375,7 @@ a:focus {
   background-color: #e69c00;
 }
 
-.slider_section .img-box img {
+/* .slider_section .img-box img {
   width: 100%;
 }
 
@@ -394,7 +402,7 @@ a:focus {
   width: 20px;
   height: 20px;
   background-color: #ffbe33;
-}
+} */
 
 .offer_section {
   position: relative;
