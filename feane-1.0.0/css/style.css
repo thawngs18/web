@@ -341,7 +341,10 @@ button {
           transform: rotate(90deg);
   top: 0;
 }
-
+ /* about section  */
+.img-box img {
+  border-radius: 10px; 
+}
 /*end header section*/
 /* slider section */
 slider_section {
