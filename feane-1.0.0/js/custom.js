@@ -7,10 +7,12 @@ function getYear() {
 
 getYear();
 var images = [
-    'images/f2.jpg',
-    'images/f1.png',
-    'images/f3.png',
-    'images/f4.png', // Thêm nhiều ảnh nếu cần
+    'images/banner/b2.png',
+    'images/banner/b3.png',
+    'images/banner/b4.png',
+    'images/banner/b5.png', // Thêm nhiều ảnh nếu cần
+    'images/banner/b6.png',
+    'images/banner/b7.png',  
 ];
 
 var currentIndex = 0; // Chỉ số ảnh hiện tại
@@ -25,7 +27,7 @@ function changeImage() {
 }
 
 // Thay đổi ảnh sau mỗi 2 giây (2000 milliseconds)
-setInterval(changeImage, 3000);
+setInterval(changeImage, 2500);
 
 // isotope js
 $(window).on('load', function () {
