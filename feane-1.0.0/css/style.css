@@ -33,6 +33,8 @@ body {
 h1,
 h2 {
   font-family: 'Dancing Script', cursive;
+  
+
 }
 
 .heading_container {
@@ -46,12 +48,13 @@ h2 {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  margin-top: 100px;
 }
 
 .heading_container h2 {
   position: relative;
   margin-bottom: 0;
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: bold;
 }
 
@@ -100,6 +103,7 @@ a:focus {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  text-align: center;
 }
 
 .bg-box {
@@ -108,6 +112,8 @@ a:focus {
   left: 0;
   width: 100%;
   height: 100%;
+  display: inline-block;
+  margin-top: 60px;
 }
 
 .bg-box img {
@@ -117,6 +123,23 @@ a:focus {
      object-fit: cover;
      overflow: hidden;
  
+}
+
+button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 5px;
+}
+#prevBtn {
+    left: 10px;
+}
+#nextBtn {
+    right: 10px;
 }
 
 .sub_page .hero_area {
@@ -141,7 +164,15 @@ a:focus {
 }
 
 .header_section {
-  padding: 15px 0;
+  /* padding: 15px 0; */
+
+  position: absolute; /* Đặt header ở vị trí tuyệt đối */
+  top: 0; /* Đưa header lên trên cùng */
+  left: 0; /* Căn trái */
+  width: 100%; /* Đảm bảo header chiếm toàn bộ chiều rộng */
+  z-index: 1000; /* Đảm bảo header nằm trên hình ảnh */
+  background-color: rgba(8, 8, 8, 0.8); /* Màu nền với độ trong suốt */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thêm bóng cho header */
 }
 
 .header_section .container-fluid {
@@ -375,7 +406,7 @@ slider_section {
   background-color: #e69c00;
 }
 
-/* .slider_section .img-box img {
+.slider_section .img-box img {
   width: 100%;
 }
 
@@ -402,7 +433,7 @@ slider_section {
   width: 20px;
   height: 20px;
   background-color: #ffbe33;
-} */
+}
 
 .offer_section {
   position: relative;
