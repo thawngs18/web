@@ -90,6 +90,7 @@ function myMap() {
   var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 }
 
+
 // client section owl carousel
 $(".client_owl-carousel").owlCarousel({
   loop: true,
