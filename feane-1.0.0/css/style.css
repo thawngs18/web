@@ -282,6 +282,23 @@ button {
   color: #ffbe33;
 }
 
+#cart-count {
+  position: absolute;
+  top: auto; /* Điều chỉnh vị trí */
+  right: 14%; /* Điều chỉnh vị trí */
+  transform: translate(-50%, -50%);
+ 
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  pointer-events: none;
+
+}
+
 .user_option .cart_link {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -307,7 +324,7 @@ button {
 
 .user_option .order_online {
   display: inline-block;
-  padding: 8px 30px;
+  padding: 8px 20px;
   background-color: #ffbe33;
   color: #ffffff;
   border-radius: 45px;

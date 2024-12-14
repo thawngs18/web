@@ -49,4 +49,10 @@ $(window).on("load", function () {
 $(document).ready(function () {
   $("select").niceSelect();
 });
-  
+let cartCount = 0; // Biến để lưu số lượng sản phẩm
+
+function addToCart(event) {
+  event.preventDefault(); // Ngăn chuyển hướng link
+  cartCount++; // Tăng số lượng
+  document.getElementById("cart-count").textContent = cartCount; // Cập nhật số hiển thị
+}

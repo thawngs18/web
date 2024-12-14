@@ -1,103 +1,76 @@
-// to get current year
+// Lấy năm hiện tại
 function getYear() {
-  var currentDate = new Date();
-  var currentYear = currentDate.getFullYear();
-  document.querySelector("#displayYear").innerHTML = currentYear;
+  const currentYear = new Date().getFullYear();
+  document.querySelector("#displayYear").textContent = currentYear;
 }
-
 getYear();
-var images = [
+
+// Thay đổi hình ảnh tự động
+const images = [
   "images/banner/b2.png",
   "images/banner/b3.png",
   "images/banner/b4.png",
-  "images/banner/b5.png", // Thêm nhiều ảnh nếu cần
+  "images/banner/b5.png",
   "images/banner/b6.png",
   "images/banner/b7.png",
 ];
+let currentIndex = 0;
 
-var currentIndex = 0; // Chỉ số ảnh hiện tại
-
-// Hàm để thay đổi ảnh
 function changeImage() {
-  currentIndex++; // Tăng chỉ số ảnh
-  if (currentIndex >= images.length) {
-    currentIndex = 0; // Nếu đã đến ảnh cuối, quay lại ảnh đầu
-  }
-  document.getElementById("myImage").src = images[currentIndex]; // Thay đổi ảnh
+  currentIndex = (currentIndex + 1) % images.length;
+  document.getElementById("myImage").src = images[currentIndex];
 }
-
-// Thay đổi ảnh sau mỗi 2 giây (2000 milliseconds)
 setInterval(changeImage, 2500);
 
-// isotope js
+// Isotope JS
 $(window).on("load", function () {
-  // Xử lý khi bấm vào menu chính (filters_menu)
+  const $grid = $(".grid").isotope({
+    itemSelector: ".all",
+    percentPosition: true,
+    masonry: { columnWidth: ".all" },
+  });
+
   $(".filters_menu li").click(function () {
     $(".filters_menu li").removeClass("active");
     $(this).addClass("active");
-
-    // Lấy giá trị filter
-    var data = $(this).attr("data-filter");
-
-    // Kiểm tra nếu filter là 'monchinh', hiển thị filter_monchinh
-    if (data === ".monchinh") {
+    const filterValue = $(this).attr("data-filter");
+    if (filterValue === ".monchinh") {
       $(".filters_monchinh").show();
     } else {
-      $(".filters_monchinh").hide(); // Ẩn filter_monchinh nếu không phải 'monchinh'
+      $(".filters_monchinh").hide();
     }
-
-    // Áp dụng filter cho isotope
-    $grid.isotope({
-      filter: data,
-    });
+    $grid.isotope({ filter: filterValue });
   });
 
-  // Xử lý các item bên trong filters_monchinh
   $(".filters_monchinh li").click(function () {
     $(".filters_monchinh li").removeClass("active");
     $(this).addClass("active");
-
-    var data = $(this).attr("data-filter");
-    $grid.isotope({
-      filter: data,
-    });
+    const filterValue = $(this).attr("data-filter");
+    $grid.isotope({ filter: filterValue });
   });
 
-  // Khởi tạo isotope
-  var $grid = $(".grid").isotope({
-    itemSelector: ".all",
-    percentPosition: false,
-    masonry: {
-      columnWidth: ".all",
-    },
-  });
-
-  // Ẩn filter_monchinh ban đầu
   $(".filters_monchinh").hide();
 });
 
-// nice select
+// Nice Select
 $(document).ready(function () {
   $("select").niceSelect();
 });
 
-/** google_map js **/
+// Google Map
 function myMap() {
-  var mapProp = {
+  const mapProp = {
     center: new google.maps.LatLng(40.712775, -74.005973),
     zoom: 18,
   };
-  var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+  new google.maps.Map(document.getElementById("googleMap"), mapProp);
 }
 
-
-// client section owl carousel
+// Owl Carousel
 $(".client_owl-carousel").owlCarousel({
   loop: true,
   margin: 0,
-  dots: false,
   nav: true,
-  navText: [],
   autoplay: true,
   autoplayHoverPause: true,
   navText: [
@@ -105,14 +78,61 @@ $(".client_owl-carousel").owlCarousel({
     '<i class="fa fa-angle-right" aria-hidden="true"></i>',
   ],
   responsive: {
-    0: {
-      items: 1,
-    },
-    768: {
-      items: 2,
-    },
-    1000: {
-      items: 2,
-    },
+    0: { items: 1 },
+    768: { items: 2 },
+    1000: { items: 2 },
   },
 });
+
+// Giỏ hàng
+let cartCount = 0;
+
+function addToCart(event) {
+  event.preventDefault();
+  cartCount++;
+  document.getElementById("cart-count").textContent = cartCount;
+}
+
+// Cập nhật tổng tiền
+function updatePrice() {
+  let totalPrice = 0;
+  const cartItems = document.querySelectorAll(".cart-item");
+  cartItems.forEach((item) => {
+    const priceText = item.children[1].innerText.replace(/[^\d]/g, "");
+    const quantity = parseInt(item.querySelector("input").value) || 0;
+    totalPrice += Number(priceText) * quantity;
+  });
+  document.getElementById("total-price").textContent =
+    new Intl.NumberFormat("vi-VN").format(totalPrice) + "đ";
+}
+
+// Chuyển đến form thanh toán
+// Đảm bảo form thông tin bị ẩn khi trang được tải
+window.onload = function () {
+  const checkoutForm = document.querySelector(".checkout-form");
+  const cart = document.querySelector(".cart");
+
+  // Kiểm tra nếu các phần tử tồn tại trước khi thao tác
+  if (checkoutForm && cart) {
+    checkoutForm.style.display = "none"; // Ẩn form thông tin đơn hàng
+    cart.style.display = "block"; // Hiển thị giỏ hàng
+  }
+};
+
+// Hàm chuyển từ giỏ hàng sang form thông tin đơn hàng
+function checkout() {
+  const checkoutForm = document.querySelector(".checkout-form");
+  const cart = document.querySelector(".cart");
+
+  if (cart && checkoutForm) {
+    const cartItems = document.querySelectorAll(".cart-item");
+    if (cartItems.length === 0) {
+      alert("Giỏ hàng của bạn đang trống!");
+      return;
+    }
+
+    cart.style.display = "none"; // Ẩn giỏ hàng
+    checkoutForm.style.display = "block"; // Hiển thị form thông tin
+  }
+}
+

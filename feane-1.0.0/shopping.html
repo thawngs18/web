@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Feane - Đặt hàng</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+    <!-- Nice Select CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" />
+
+    <!-- Font Awesome -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link href="css/shopping.css" rel="stylesheet" />
+
+    <!-- Responsive Style -->
+    <link href="css/responsive.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand brand-name" href="index.html"><span>Elsol</span></a>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+              <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            </ul>
+            <a href="book.html" class="order_online">Book Online</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Cart and Checkout -->
+    <div class="container cart-container">
+      <!-- Steps -->
+      <div class="cart-steps">
+        <div class="step"><span>1</span><p>Giỏ hàng</p></div>
+        <div class="step"><span>2</span><p>Thông tin đơn hàng</p></div>
+        <div class="step"><span>3</span><p>Hoàn tất</p></div>
+      </div>
+
+      <!-- Cart -->
+      <div class="cart">
+        <div class="cart-header">
+          <div>Thông tin sản phẩm</div>
+          <div>Đơn giá</div>
+          <div>Số lượng</div>
+          <div>Thành tiền</div>
+          <div>Xóa</div>
+        </div>
+        <div class="checkout-btn">
+          <button onclick="checkout()" class="btn">Mua hàng ngay</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Form nhập thông tin -->
+    <div class="container checkout-form" style="display: none;">
+      <form id="orderForm" onsubmit="submitOrder(event)">
+        <div class="form-group">
+          <label for="fullName">Họ và Tên *</label>
+          <input type="text" id="fullName" name="fullName" placeholder="Họ và tên (*)" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Điện Thoại *</label>
+          <input type="text" id="phone" name="phone" placeholder="Điện thoại (*)" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" placeholder="Email (*)" required />
+        </div>
+        <div class="form-group">
+          <label for="city">Tỉnh / Thành phố *</label>
+          <select id="city" name="city" required>
+            <option value="" disabled selected>Chọn thành phố</option>
+            <option value="HCM">TP. Hồ Chí Minh</option>
+            <option value="HN">Hà Nội</option>
+            <option value="DN">Đà Nẵng</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="district">Quận / Huyện *</label>
+          <select id="district" name="district" required>
+            <option value="" disabled selected>-- Chọn quận huyện --</option>
+            <option value="Quan1">Quận 1</option>
+            <option value="Quan2">Quận 2</option>
+            <option value="Quan3">Quận 3</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="address">Địa Chỉ *</label>
+          <input type="text" id="address" name="address" placeholder="Địa chỉ (*)" required />
+        </div>
+        <button type="submit" class="btn">Thanh Toán</button>
+      </form>
+    </div>
+    <!-- Đặt hàng thành công -->
+    <div class="container success-message" style="display: none; text-align: center; margin-top: 50px;">
+      <h2>Đặt hàng thành công!</h2>
+      <p>Cảm ơn bạn đã đặt hàng. Chúng tôi sẽ liên hệ bạn sớm nhất.</p>
+      <a href="index.html" class="btn" style="background-color: #ffbe33; color: white;">Quay về trang chủ</a>
+    </div>
+    
+   <!-- footer section -->
+  <footer class="footer_section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 footer-col">
+          <div class="footer_contact">
+            <h4>
+              Contact Us
+            </h4>
+            <div class="contact_link_box">
+              <a href="">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span>
+                  Location
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>
+                  Call +01 1234567890
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <span>
+                  demo@gmail.com
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 footer-col">
+          <div class="footer_detail">
+            <a href="" class="footer-logo">
+              Feane
+            </a>
+            <p>
+              Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with
+            </p>
+            <div class="footer_social">
+              <a href="">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-pinterest" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 footer-col">
+          <h4>
+            Opening Hours
+          </h4>
+          <p>
+            Everyday
+          </p>
+          <p>
+            10.00 Am -10.00 Pm
+          </p>
+        </div>
+      </div>
+      <div class="footer-info">
+        <p>
+          &copy; <span id="displayYear"></span> All Rights Reserved By
+          <a href="https://html.design/">Free Html Templates</a><br><br>
+          &copy; <span id="displayYear"></span> Distributed By
+          <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+  <!-- footer section -->
+
+    <!-- Scripts -->
+    <script>
+      function checkout() {
+        document.querySelector(".cart").style.display = "none"; // Ẩn cart
+        document.querySelector(".checkout-form").style.display = "block"; // Hiện form
+      }
+      function submitOrder(event) {
+        event.preventDefault(); // Ngăn reload trang
+        document.querySelector(".checkout-form").style.display = "none"; // Ẩn form
+        document.querySelector(".success-message").style.display = "block"; // Hiển thị thông báo thành công
+      }
+    </script>
+  </body>
+</html>
